@@ -1,0 +1,29 @@
+{
+  "name": "tessera-deputados",
+  "version": "1.0.0",
+  "description": "Microservice that return data from deputados",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BPernes/tessera-deputados.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BPernes/tessera-deputados/issues"
+  },
+  "homepage": "https://github.com/BPernes/tessera-deputados#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "generate-schema": "^2.6.0",
+    "mongoose": "^6.3.4",
+    "nodemon": "^2.0.16"
+  }
+}
