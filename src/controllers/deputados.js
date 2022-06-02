@@ -1,24 +1,25 @@
-const axios = require('axios')
-const deputadosRepository = require('../infrastructure/db/deputadosRepository')
+const Deputados = require('../domain/models/deputados')
 
-exports.populateDeputadosDB = async (req, res) => {
-    try {
-        const res = await axios.get('https://dadosabertos.camara.leg.br/api/v2/deputados?itens=100&ordem=ASC&ordenarPor=nome')
-        const deputados = await JSON.parse(res.data)
+exports.getAll = async (req, res) => {
+    await Deputados.find({}).then((Deputados) => {
+        res.send(Deputados);
+    })
+}
 
-        console.log(res);
-        console.log('');
-        console.log('------------');
-        console.log('');
-        console.log(deputados);
+exports.getByName = async (req, res) => {
+    const { nome } = req.params;
+    const deputado = await Deputados.find({ nome }).exec()
+    res.send(deputado)
+}
 
-        const newDeputado = await deputadosRepository.insert(deputados)
-        res.json({
-            msg: 'Sucesso!!',
-            deputado: newDeputado
-        })
-    }
-    catch (err) {
-        console.log(err)
-    }
+exports.getBySiglaUf = async (req, res) => {
+    const { siglaUf } = req.params;
+    const deputados = await Deputados.find({ siglaUf }).exec()
+    res.send(deputados)
+}
+
+exports.getBySiglaPartido = async (req, res) => {
+    const { siglaPartido } = req.params;
+    const deputados = await Deputados.find({ siglaPartido }).exec()
+    res.send(deputados)
 }
